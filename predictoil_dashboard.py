@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.ensemble import IsolationForest
 import streamlit as st
 import altair as alt
+import time
 
 # Simular datos
 np.random.seed(42)
@@ -59,3 +60,10 @@ st.altair_chart(press_chart, use_container_width=True)
 # Tabla de anomalías
 st.subheader("🚨 Anomalías Detectadas")
 st.dataframe(anomalies[["index", "temperature", "vibration", "pressure"]], height=200)
+
+# Simular actualización cada 10 segundos
+st.markdown("🔄 Este panel se actualiza cada 10 segundos automáticamente.")
+
+# Esperar 10 segundos y recargar
+time.sleep(10)
+st.experimental_rerun()
