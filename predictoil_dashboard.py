@@ -66,4 +66,4 @@ st.markdown("🔄 Este panel se actualiza cada 10 segundos automáticamente.")
 
 # Esperar 10 segundos y recargar
 time.sleep(10)
-st.experimental_rerun()
+st.rerun()
