@@ -1,22 +1,15 @@
 import streamlit as st
 import pandas as pd
 import gspread
+import json
+import os
 from oauth2client.service_account import ServiceAccountCredentials
-from sklearn.ensemble import IsolationForest
-import altair as alt
-from datetime import datetime
+import time
 
 st.set_page_config(page_title="PredictOil Dashboard", layout="wide")
-st.title("🛢️ PredictOil - Dashboard en Tiempo Real")
+st.title("📊 PredictOil - Monitoreo en Tiempo Real")
 
-# Autenticación
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-import os
-import json
-from oauth2client.service_account import ServiceAccountCredentials
-import gspread
-
-# Leer credenciales desde el secreto
+# --- Autenticación con Google Sheets desde secretos ---
 creds_json = os.getenv("GOOGLE_CREDENTIALS")
 creds_dict = json.loads(creds_json)
 
@@ -24,31 +17,23 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
-# Leer la hoja
-spreadsheet = client.open("PredictOil_Data")
-sheet = spreadsheet.sheet1
+# --- Leer los datos desde Google Sheets ---
+sheet = client.open("PredictOil_Data").sheet1
 data = sheet.get_all_records()
 df = pd.DataFrame(data)
 
-# Procesar
-df["timestamp"] = pd.to_datetime(df["timestamp"])
-df = df.tail(100)  # Mostrar solo las últimas 100 filas
-
-# Modelo
-if len(df) >= 50:
-    model = IsolationForest(contamination=0.02, random_state=42)
-    df["anomaly"] = model.fit_predict(df[["temperature", "vibration", "pressure"]])
+# --- Visualización ---
+if df.empty:
+    st.warning("No hay datos disponibles todavía.")
 else:
-    df["anomaly"] = 1
+    st.subheader("📈 Datos Recientes")
+    st.dataframe(df.tail(10), use_container_width=True)
 
-# Visualización
-st.altair_chart(alt.Chart(df).mark_line().encode(x="timestamp", y="temperature"), use_container_width=True)
-st.altair_chart(alt.Chart(df).mark_line(color="orange").encode(x="timestamp", y="vibration"), use_container_width=True)
-st.altair_chart(alt.Chart(df).mark_line(color="green").encode(x="timestamp", y="pressure"), use_container_width=True)
+    st.line_chart(df.set_index("timestamp")["temperatura"], use_container_width=True)
+    st.line_chart(df.set_index("timestamp")["vibracion"], use_container_width=True)
+    st.line_chart(df.set_index("timestamp")["presion"], use_container_width=True)
 
-st.subheader("🚨 Anomalías")
-st.dataframe(df[df["anomaly"] == -1][["timestamp", "temperature", "vibration", "pressure"]])
-
-# Actualización automática
+# --- Actualizar cada 10 segundos ---
+time.sleep(10)
 st.experimental_rerun()
 
