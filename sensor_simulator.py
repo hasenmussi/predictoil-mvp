@@ -1,16 +1,12 @@
-import time
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import numpy as np
-from datetime import datetime
-
-# Autenticación con Google Sheets
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-import os
+import random
+import time
 import json
+import os
+from datetime import datetime
 from oauth2client.service_account import ServiceAccountCredentials
 
-# Leer credenciales desde el secreto
+# --- Autenticación con Google Sheets desde secretos ---
 creds_json = os.getenv("GOOGLE_CREDENTIALS")
 creds_dict = json.loads(creds_json)
 
@@ -18,20 +14,17 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
-# Abrir la hoja de cálculo y seleccionar la primera hoja
-spreadsheet = client.open("PredictOil_Data")  # Nombre exacto de tu hoja
-sheet = spreadsheet.sheet1
+sheet = client.open("PredictOil_Data").sheet1
 
-# Bucle de simulación
+# --- Simulación de datos ---
 while True:
-    # Simular datos
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    temperature = round(np.random.normal(70, 2), 2)
-    vibration = round(np.random.normal(5, 0.5), 2)
-    pressure = round(np.random.normal(30, 1), 2)
+    temperatura = round(random.uniform(60, 90), 2)
+    vibracion = round(random.uniform(3, 8), 2)
+    presion = round(random.uniform(20, 40), 2)
 
-    # Agregar fila
-    sheet.append_row([timestamp, temperature, vibration, pressure])
-    print(f"📡 Enviado: {timestamp}, {temperature}, {vibration}, {pressure}")
+    row = [timestamp, temperatura, vibracion, presion]
+    sheet.append_row(row)
+    print(f"📡 Enviado: {row}")
 
-    time.sleep(10)  # Espera de 10 segundos
+    time.sleep(10)
