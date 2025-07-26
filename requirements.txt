@@ -2,3 +2,4 @@ streamlit
 pandas
 scikit-learn
 altair
+pip install gspread oauth2client pandas
