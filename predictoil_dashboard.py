@@ -11,7 +11,17 @@ st.title("🛢️ PredictOil - Dashboard en Tiempo Real")
 
 # Autenticación
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("credenciales.json", scope)
+import os
+import json
+from oauth2client.service_account import ServiceAccountCredentials
+import gspread
+
+# Leer credenciales desde el secreto
+creds_json = os.getenv("GOOGLE_CREDENTIALS")
+creds_dict = json.loads(creds_json)
+
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
 # Leer la hoja
