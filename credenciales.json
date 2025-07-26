@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "predictoil-data",
+  "private_key_id": "ebebf4db99291cf390b800ae90aa237829274975",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDdEJBtdNLnNbla\n24futAz6dtKpVPO2ZmeN74Q6VwDhvje+bG1bZqgJl41CKJzx20+l0+0jNxedQp3k\nHJnzEK57hWofTkpJlZNGDaKy3gdEL8wRJYOVD6w4m9mpVWExACKVyhRPeQqO7muy\n3jxal2go/Cxyz13qEVDt4JZInQ6Bf3gxOfE+PME5OD0jYI6LfkIiDyxcT+wQLaPm\ntNgSKWIZzhKEw0M7gsk/5uUEiLkL+Yea4cRMUrXFdUicCHZXRmJBIe2Fs7wtQ2ws\nI41JoJMWlBOJMj7s+3lPlpcXuOSdjkabJ+z9MCtUczBJns8t3Ow+8VMgpUvBdmPT\njDQVDvr/AgMBAAECggEAYiqdYCXNFAQ867Zp7hvBWaXTVYOWeAyQdqyCdN+20ggE\nvAhtJXX4L84/Wb4sN5BylYp/FzC7SUfQUoBK8u+Y89wibIV5IqUL0cNzWOeUpXhu\nL70Pae2cRkUbCoGSF87eDNNAYqw2/pKse7EJbxcmF3EoEdG4/By1afTd95/a1bDg\nCfUPFY1QVD5tfIrL+HOBZxD2UFUWXncr7NjuMh2oOYk4Lz/5Rp1ZeGNR1CQ/mOre\ngz3nT3/eUZ5JKZmsE9lkVVCdDB1tnpGbB9GUnruX5EomkBxaBtPn16+qWP3tNzVb\nWC1KfKG2uB0lGr7RsQkcAnvSRuIwj6J0gXY0k9CW5QKBgQD9lmV408K9N2uVe4sY\nH/cWC2WMnU8Ci3jA9rYaeIqrFRqnU1jgP7sFb9pu/ZWXOqi89HOjmhVv6c+YVVb/\n8jlLlpuTWL01Kv69HQ+SOuvA6LpgJhA1/6maLO7cm+nI0CcLtAH8eMaatK9afE8e\nOTGYhe2kgi7SHTCE9kfR76CyowKBgQDfKvWtQWgchtk7W5nV3l3RGNGlDDzXR0Rh\nWOvDBdBS+6C05i2Bga8Sh8qtz3p1rXT8QulqHxcKXy9H6B+g0w5TxgcL0sAxmo0e\nIOYV5I5ZM7H+oVINwTXbkU1E9yjsY1fgFm2cpvIVXV2nNTq3b4XZY5fVtFTH2lYH\nSzMQD8E39QKBgG/mCJq7nsgOB3wryuH3YPmqR8I3vCCcWMmVVB/0JwR9SIijX6l8\nldM9Wz70ySi1arYOjGSZ3nHG06MdrUk9ooi3SalIVB18/nGGvFNDirpSN8OrqCWb\nzkRJJZHVfuDs8P3aDbJRvRmRN3uPNP5aMIdkOcwI4g43cSyK3IBH5DpPAoGARyiq\nl6kQanAxGjU2EzTJU2AHkQoa6EYILsYsvs2+xIcJkkUG45GXYmA8JznOAXHiqIEp\nbjYloaACMnp4g05o9hthqcp0kByIvL+evgJXxWevbNLBmDMwWie1rLTmrqFqpsBg\nCSBOdrODpkpZw53i3xNbmb/bfLJI1iCLUqbDZHUCgYA1VyF7W7vy5mAif9Xp4u8W\n+WaU5XKwuwKBRko5Kf7Id6SDPG+X850vFrSDtlgVDGQXH/n8zTrSBmF8yIqpdwwk\nXndzPurVm4fFyAcGWbX3Zp4QlZiuqRawPALhUBT8tej29c2BQjx39vDRWMjT9+Td\nsH61sncjj3rtiGTbFzI6mg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "predictoil-simulador@predictoil-data.iam.gserviceaccount.com",
+  "client_id": "102555816094114578768",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/predictoil-simulador%40predictoil-data.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
