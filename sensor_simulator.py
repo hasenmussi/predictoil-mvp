@@ -1,30 +1,28 @@
 import time
-import pandas as pd
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 import numpy as np
 from datetime import datetime
 
-# Crear archivo CSV inicial si no existe
-try:
-    df = pd.read_csv("sensor_data.csv")
-except FileNotFoundError:
-    df = pd.DataFrame(columns=["timestamp", "temperature", "vibration", "pressure"])
-    df.to_csv("sensor_data.csv", index=False)
+# Autenticación con Google Sheets
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("credenciales.json", scope)
+client = gspread.authorize(creds)
 
+# Abrir la hoja de cálculo y seleccionar la primera hoja
+spreadsheet = client.open("PredictOil_Data")  # Nombre exacto de tu hoja
+sheet = spreadsheet.sheet1
+
+# Bucle de simulación
 while True:
-    # Simular nueva lectura de sensores
-    new_data = {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "temperature": np.random.normal(70, 2),    # promedio 70°C
-        "vibration": np.random.normal(5, 0.5),     # promedio 5 mm/s
-        "pressure": np.random.normal(30, 1)        # promedio 30 bar
-    }
+    # Simular datos
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    temperature = round(np.random.normal(70, 2), 2)
+    vibration = round(np.random.normal(5, 0.5), 2)
+    pressure = round(np.random.normal(30, 1), 2)
 
-    # Leer el archivo existente y agregar nueva fila
-    df = pd.read_csv("sensor_data.csv")
-    df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
-    
-    # Guardar los datos actualizados
-    df.to_csv("sensor_data.csv", index=False)
+    # Agregar fila
+    sheet.append_row([timestamp, temperature, vibration, pressure])
+    print(f"📡 Enviado: {timestamp}, {temperature}, {vibration}, {pressure}")
 
-    # Esperar 10 segundos para la siguiente lectura
-    time.sleep(10)
+    time.sleep(10)  # Espera de 10 segundos
